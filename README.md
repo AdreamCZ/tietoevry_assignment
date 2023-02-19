@@ -13,4 +13,4 @@ The REST API should be up and running. To try it out you can use any API testing
 ```bash
 python3 test.py
 ```
-Adter that just follow the prompts on screen.
+After that just follow the prompts on screen.
