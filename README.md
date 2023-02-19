@@ -9,8 +9,8 @@ Now run the created image with the following command:
 ```bash
 docker run --publish 5000:5000 moviesapi
 ```
-The REST API should be up and running. To try it out you can use any API testing tool like [postman](https://www.postman.com/downloads/), or you can use the python script I created. You can run it like this:
+The REST API should be up and running. To try it out you can use any API testing tool like [postman](https://www.postman.com/downloads/), or you can use the python script I created. It uses the [requests](https://pypi.org/project/requests/) package, so if you don't already have it, install it using pip. Then run it like this :
 ```bash
 python3 test.py
 ```
-Then just follow the prompts on screen.
+Adter that just follow the prompts on screen.
