@@ -2,6 +2,7 @@ import requests
 
 api_url = "http://127.0.0.1:5000/movies"
 
+# Used to select which action is to be performed
 def menu():
     print("-----------------------")
     print("1 - display all movies")
@@ -25,7 +26,7 @@ def menu():
         print("Invalid action.")
         menu()
 
-
+# Prints info about one movie
 def print_movie(movie):
     try:
         print(str(movie["id"]) + ":" + movie["title"])
@@ -35,7 +36,7 @@ def print_movie(movie):
         # Object passed in is not a movie dict -> print it as is
         print(movie)
         
-
+# Gets all the movies from the DB and prints them one by one
 def display_all():
     response = requests.get(api_url)
     if not response.ok:
@@ -47,7 +48,7 @@ def display_all():
         print_movie(movie)
         print("")
     
-
+# Prints info about a movie with user specified id
 def display_one():
     id = input("Enter id: ")
     response = requests.get(api_url + "/" + id)
@@ -57,14 +58,16 @@ def display_one():
         print("Returned status code : " + str(response.status_code))
         print(response.json())
     
+# Adds a new movie into the database
 def insert_new():
     title = input("Title: ")
     description = input("Description: ")
     release_year = input("Release year: ")
     movie = {"title": title, "description": description, "release_year": release_year}
     response = requests.post(api_url, json=movie)
-    print("Status code : " + str(response.status_code))
+    print("Returned status code : " + str(response.status_code))
 
+# Changes info about one movie
 def update():
     id = input("Enter id: ")
     original = requests.get(api_url + "/" + id)
@@ -84,7 +87,7 @@ def update():
     response = requests.put(api_url + "/" + id, json=movie)
     print("Updated movie :")
     print_movie(response.json())
-    print("Status code : " + str(response.status_code))
+    print("Returned status code : " + str(response.status_code))
 
 while(True):
     menu()
