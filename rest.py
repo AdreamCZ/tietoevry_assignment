@@ -76,9 +76,8 @@ def insert_movie(movie):
         INSERT INTO movie (title, description, release_year) VALUES (?, ?, ?)
     ''', (movie["title"], movie["description"], movie["release_year"]))
     conn.commit()
-    inserted_movie = get_movie_by_id(cur.lastrowid)
     conn.close()
-    return inserted_movie
+    return get_movie_by_id(cur.lastrowid)
 
 #Updates existing movie
 def update_movie(movie):
@@ -90,8 +89,7 @@ def update_movie(movie):
     )
     conn.commit()
     conn.close()
-    updated_movie = get_movie_by_id(movie["id"])
-    return updated_movie
+    return get_movie_by_id(movie["id"])
 
 # REST API implementation :
 app = Flask(__name__)
